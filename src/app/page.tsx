@@ -101,7 +101,9 @@ export default function Home() {
         {/* 헤더 내용 */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center space-y-2 px-4 text-center">
           <h1 className="text-lg sm:text-xl font-light">KOOKMIN UNIVERSITY</h1>
-          <p className="text-sm sm:text-lg font-light">Department of Cyber Security / Department of Mathematics</p>
+          <p className="text-sm sm:text-lg font-light">
+            Department of Cyber Security<br className="sm:hidden" /> / Department of Mathematics
+          </p>
           <h2 className="text-2xl sm:text-3xl font-bold">2025 학년도 일반대학원 학사일정</h2>
         </div>
       </header>
@@ -109,7 +111,7 @@ export default function Home() {
       {/* 카테고리 메뉴 */}
       <div className="bg-white shadow-sm py-2 overflow-x-auto">
         <div className="container mx-auto px-4">
-          <div className="flex justify-start sm:justify-center space-x-6 sm:space-x-8 min-w-max px-4">
+          <div className="grid grid-cols-3 sm:flex sm:justify-center gap-2 sm:gap-8">
             <a href="#" className="flex items-center text-gray-600 hover:text-blue-600">
               <span className="mr-2">🎓</span>
               <span className="whitespace-nowrap">입학/졸업</span>
@@ -126,7 +128,7 @@ export default function Home() {
               <span className="mr-2">📆</span>
               <span className="whitespace-nowrap">신청/등록</span>
             </a>
-            <a href="#" className="flex items-center text-gray-600 hover:text-blue-600">
+            <a href="#" className="flex items-center text-gray-600 hover:text-blue-600 col-span-2">
               <span className="mr-2"><ImportantStar /></span>
               <span className="whitespace-nowrap">중요</span>
             </a>
