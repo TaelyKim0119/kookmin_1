@@ -171,7 +171,7 @@ export default function Home() {
                   <tr>
                     <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">일자</th>
                     <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">내용</th>
-                    <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">비고</th>
+                    <th className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">비고</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -197,7 +197,7 @@ export default function Home() {
                             </a>
                           </div>
                         </td>
-                        <td className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-500 whitespace-nowrap">{schedule.note}</td>
+                        <td className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-500 whitespace-nowrap">{schedule.note}</td>
                       </tr>
                     ))}
                 </tbody>
