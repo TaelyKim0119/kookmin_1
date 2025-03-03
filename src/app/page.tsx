@@ -100,7 +100,7 @@ export default function Home() {
         
         {/* 헤더 내용 */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center space-y-2 px-4 text-center">
-          <h1 className="text-lg sm:text-xl font-light">KOOKMIN UNIVERSITY</h1>
+          <h1 className="text-xl sm:text-2xl font-light">KOOKMIN UNIVERSITY</h1>
           <p className="text-sm sm:text-lg font-light">
             Department of Cyber Security<br className="sm:hidden" /> / Department of Mathematics
           </p>
