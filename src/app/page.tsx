@@ -54,9 +54,24 @@ export default function Home() {
       {
         date: "3.14",
         content: "일반대학원 [사이버보안학과] 종합시험",
-        note: "",
+        note: "시험장소: 320호",
         link: "https://gds.kookmin.ac.kr/information/notice/3952",
         isImportant: true
+      }
+    ],
+    4: [
+      {
+        date: "4.1-4.5",
+        content: "2025학년도 1학기 수강신청 변경",
+        note: "17:00까지",
+        link: "https://gds.kookmin.ac.kr/information/notice/3954",
+        isImportant: true
+      },
+      {
+        date: "4.15",
+        content: "학위청구논문 신청",
+        note: "마감일 엄수",
+        link: "https://gds.kookmin.ac.kr/information/notice/3955"
       }
     ]
   };
