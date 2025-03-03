@@ -60,21 +60,16 @@ export default function Home() {
       }
     ],
     4: [],
-    5: [
-      {
-        date: "5.1-5.5",
-        content: "2025학년도 1학기 수강신청 변경",
-        note: "17:00까지",
-        link: "https://gds.kookmin.ac.kr/information/notice/3954",
-        isImportant: true
-      },
-      {
-        date: "5.15",
-        content: "학위청구논문 신청",
-        note: "마감일 엄수",
-        link: "https://gds.kookmin.ac.kr/information/notice/3955"
-      }
-    ]
+    5: [],
+    6: [],
+    7: [],
+    8: [],
+    9: [],
+    10: [],
+    11: [],
+    12: [],
+    1: [],
+    2: []
   };
 
   const getMonthIcon = (month: number) => {
