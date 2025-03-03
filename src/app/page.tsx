@@ -11,6 +11,42 @@ interface Schedule {
   isImportant?: boolean;
 }
 
+const VisitorCounter = () => {
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+    // 로컬 스토리지에서 방문자 수 가져오기
+    const count = localStorage.getItem('visitorCount');
+    const lastVisit = localStorage.getItem('lastVisit');
+    const today = new Date().toDateString();
+
+    if (!count) {
+      localStorage.setItem('visitorCount', '1');
+      localStorage.setItem('lastVisit', today);
+      setVisitorCount(1);
+    } else if (lastVisit !== today) {
+      const newCount = parseInt(count) + 1;
+      localStorage.setItem('visitorCount', newCount.toString());
+      localStorage.setItem('lastVisit', today);
+      setVisitorCount(newCount);
+    } else {
+      setVisitorCount(parseInt(count));
+    }
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center space-x-2 text-gray-600">
+      <div className="flex items-center bg-white rounded-lg px-3 py-1 shadow-sm">
+        <span className="mr-2">👥</span>
+        <span className="font-mono text-sm">
+          {visitorCount.toString().padStart(6, '0')}
+        </span>
+      </div>
+      <span className="text-xs">방문자</span>
+    </div>
+  );
+};
+
 const ImportantStar = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block">
     <path
@@ -209,8 +245,9 @@ export default function Home() {
 
       {/* 푸터 */}
       <footer className="bg-gray-100 mt-4">
-        <div className="container mx-auto px-4 py-3 sm:py-4 text-center text-xs sm:text-sm text-gray-600">
-          <p>&copy; 2025 국민대학교 일반대학원. All rights reserved.</p>
+        <div className="container mx-auto px-4 py-4 flex flex-col items-center space-y-2">
+          <VisitorCounter />
+          <p className="text-xs sm:text-sm text-gray-600">&copy; 2025 국민대학교 일반대학원. All rights reserved.</p>
         </div>
       </footer>
     </div>
