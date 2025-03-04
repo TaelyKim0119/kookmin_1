@@ -12,37 +12,45 @@ interface Schedule {
 }
 
 const VisitorCounter = () => {
-  const [visitorCount, setVisitorCount] = useState(0);
+  const [totalVisitors, setTotalVisitors] = useState(0);
+  const [todayVisitors, setTodayVisitors] = useState(0);
 
   useEffect(() => {
     // 로컬 스토리지에서 방문자 수 가져오기
-    const count = localStorage.getItem('visitorCount');
+    const totalCount = localStorage.getItem('totalVisitors') || '0';
+    const todayCount = localStorage.getItem('todayVisitors') || '0';
     const lastVisit = localStorage.getItem('lastVisit');
     const today = new Date().toDateString();
 
-    if (!count) {
-      localStorage.setItem('visitorCount', '1');
+    // 오늘 날짜가 변경되었으면 오늘 방문자 수 초기화
+    if (lastVisit !== today) {
+      localStorage.setItem('todayVisitors', '1');
       localStorage.setItem('lastVisit', today);
-      setVisitorCount(1);
-    } else if (lastVisit !== today) {
-      const newCount = parseInt(count) + 1;
-      localStorage.setItem('visitorCount', newCount.toString());
-      localStorage.setItem('lastVisit', today);
-      setVisitorCount(newCount);
+      setTodayVisitors(1);
     } else {
-      setVisitorCount(parseInt(count));
+      setTodayVisitors(parseInt(todayCount));
     }
+
+    // 전체 방문자 수 증가
+    const newTotalCount = parseInt(totalCount) + 1;
+    localStorage.setItem('totalVisitors', newTotalCount.toString());
+    setTotalVisitors(newTotalCount);
   }, []);
 
   return (
-    <div className="flex items-center justify-center space-x-2 text-gray-600">
-      <div className="flex items-center bg-white rounded-lg px-3 py-1 shadow-sm">
-        <span className="mr-2">👥</span>
+    <div className="flex items-center justify-center space-x-4 text-gray-600">
+      <div className="flex items-center bg-white rounded-lg px-3 py-1.5 shadow-sm">
+        <span className="mr-2">👀</span>
         <span className="font-mono text-sm">
-          {visitorCount.toString().padStart(6, '0')}
+          {totalVisitors.toString().padStart(6, '0')}
         </span>
       </div>
-      <span className="text-xs">방문자</span>
+      <div className="flex items-center bg-white rounded-lg px-3 py-1.5 shadow-sm">
+        <span className="mr-2">✨</span>
+        <span className="font-mono text-sm">
+          {todayVisitors.toString().padStart(3, '0')}
+        </span>
+      </div>
     </div>
   );
 };
