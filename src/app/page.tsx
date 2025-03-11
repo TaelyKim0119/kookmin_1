@@ -92,6 +92,13 @@ export default function Home() {
         link: "https://gds.kookmin.ac.kr/information/notice/3953"
       },
       {
+        date: "3.12-3.14",
+        content: "2025학년도 1학기 일반대학원 연구등록 기간 연장",
+        note: "09:00~17:00 (기일엄수)",
+        link: "https://gds.kookmin.ac.kr/information/notice/3953",
+        isImportant: true
+      },
+      {
         date: "3.4-3.19",
         content: "수업연한 단축신청서 제출",
         note: "",
@@ -235,8 +242,8 @@ export default function Home() {
                             <span className="mr-2">{getScheduleIcon(schedule.isImportant || false)}</span>
                             <a 
                               href={schedule.link} 
-                              target="_blank"
-                              rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                               className="text-xs sm:text-sm text-blue-600 hover:underline line-clamp-2 sm:line-clamp-1"
                             >
                               {schedule.content}
