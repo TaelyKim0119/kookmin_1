@@ -8,6 +8,7 @@ interface Schedule {
   note: string;
   link: string;
   isImportant?: boolean;
+  icon?: string;
 }
 
 const ImportantStar = () => (
@@ -68,7 +69,8 @@ export default function Home() {
         content: "2025학년도 1학기 학위청구논문 심사 요청서 제출",
         note: "17:00까지",
         link: "https://cns.kookmin.ac.kr/cns/notice/graduate-school-notice.do?mode=view&articleNo=5925492&article.offset=0&articleLimit=10",
-        isImportant: true
+        isImportant: true,
+        icon: "📋"
       }
     ],
     5: [],
@@ -92,7 +94,8 @@ export default function Home() {
     return "";
   };
 
-  const getScheduleIcon = (isImportant: boolean) => {
+  const getScheduleIcon = (isImportant: boolean, customIcon?: string) => {
+    if (customIcon) return customIcon;
     return isImportant ? <ImportantStar /> : "📆";
   };
 
@@ -191,7 +194,7 @@ export default function Home() {
                       <td className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap bg-blue-50">{schedule.date}</td>
                       <td className="px-4 sm:px-6 py-2 sm:py-3">
                         <div className="flex items-center">
-                          <span className="mr-2">{getScheduleIcon(schedule.isImportant || false)}</span>
+                          <span className="mr-2">{getScheduleIcon(schedule.isImportant || false, (schedule as any).icon)}</span>
                           <a 
                             href={schedule.link} 
                             target="_blank"
