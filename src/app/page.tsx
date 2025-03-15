@@ -112,7 +112,15 @@ export default function Home() {
         isImportant: true
       }
     ],
-    4: [],
+    4: [
+      {
+        date: "4.7-4.10",
+        content: "2025학년도 1학기 학위청구논문 심사 요청서 제출",
+        note: "17:00까지",
+        link: "https://cns.kookmin.ac.kr/cns/notice/graduate-school-notice.do?mode=view&articleNo=5925492&article.offset=0&articleLimit=10",
+        isImportant: true
+      }
+    ],
     5: [],
     6: [],
     7: [],
@@ -143,14 +151,10 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <main className="min-h-screen bg-gray-50">
       {/* 헤더 */}
-      <header className="relative h-[180px] sm:h-[200px] text-white">
-        {/* 배경 이미지 */}
-        <div className="absolute inset-0 bg-[url('/images/header-bg.jpg')] bg-cover bg-center">
-          <div className="absolute inset-0 bg-blue-900/70"></div>
-        </div>
-        
+      <header className="relative h-48 sm:h-56 bg-gradient-to-r from-blue-600 to-blue-800 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
         {/* 헤더 내용 */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center space-y-2 px-4 text-center">
           <h1 className="text-2xl sm:text-3xl font-semibold">KOOKMIN UNIVERSITY</h1>
@@ -189,84 +193,76 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 메인 컨텐츠 - 월별 일정 */}
-      <main className="container mx-auto px-4 py-6 flex-1">
-        <div className="space-y-2 sm:space-y-4">
-          {months.map((row, rowIndex) => (
-            <div key={rowIndex} className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-4">
-              {row.map((month) => (
-                <button
-                  key={month}
-                  onClick={() => setSelectedMonth(month)}
-                  className={`p-3 sm:p-4 rounded-xl shadow-md hover:shadow-lg transition-all ${
-                    month === selectedMonth ? 'bg-blue-600 text-white shadow-blue-200' : 'bg-white hover:bg-gray-50 border border-gray-100'
-                  }`}
-                >
-                  <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-2">{month}월</h3>
-                  {getMonthIcon(month) && (
-                    <div className="text-xl sm:text-2xl">
-                      {getMonthIcon(month)}
-                    </div>
-                  )}
-                </button>
-              ))}
-            </div>
+      {/* 메인 콘텐츠 */}
+      <div className="container mx-auto px-4 py-8">
+        {/* 월 선택 */}
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2 mb-8">
+          {months.map((month) => (
+            <button
+              key={month}
+              onClick={() => setSelectedMonth(month)}
+              className={`py-2 px-4 rounded-lg text-sm font-medium transition-colors
+                ${selectedMonth === month
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-600 hover:bg-gray-50'
+                }
+                ${schedules[month].length > 0 ? 'ring-2 ring-blue-600 ring-opacity-50' : ''}
+              `}
+            >
+              {month}월
+            </button>
           ))}
         </div>
 
-        {/* 선택된 월 학사일정 테이블 */}
-        {schedules[selectedMonth] && (
-          <div className="mt-6">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">{selectedMonth}월 학사일정</h3>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden overflow-x-auto">
-              <table className="min-w-full">
-                <thead className="bg-blue-50">
-                  <tr>
-                    <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">일자</th>
-                    <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">내용</th>
-                    <th className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">비고</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {schedules[selectedMonth]
-                    .sort((a, b) => {
-                      const dateA = a.date.split('-')[0];
-                      const dateB = b.date.split('-')[0];
-                      return Number(dateA.replace('.', '')) - Number(dateB.replace('.', ''));
-                    })
-                    .map((schedule, index) => (
-                      <tr key={index}>
-                        <td className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap bg-blue-50">{schedule.date}</td>
-                        <td className="px-4 sm:px-6 py-2 sm:py-3">
-                          <div className="flex items-center">
-                            <span className="mr-2">{getScheduleIcon(schedule.isImportant || false)}</span>
-                            <a 
-                              href={schedule.link} 
-          target="_blank"
-          rel="noopener noreferrer"
-                              className="text-xs sm:text-sm text-blue-600 hover:underline line-clamp-2 sm:line-clamp-1"
-                            >
-                              {schedule.content}
-                            </a>
-                          </div>
-                        </td>
-                        <td className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-500 whitespace-nowrap">{schedule.note}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
+        {/* 학사 일정 테이블 */}
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead className="bg-blue-50">
+                <tr>
+                  <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">일자</th>
+                  <th className="px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">내용</th>
+                  <th className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium text-blue-700">비고</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {schedules[selectedMonth]
+                  .sort((a, b) => {
+                    const dateA = a.date.split('-')[0];
+                    const dateB = b.date.split('-')[0];
+                    return Number(dateA.replace('.', '')) - Number(dateB.replace('.', ''));
+                  })
+                  .map((schedule, index) => (
+                    <tr key={index}>
+                      <td className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap bg-blue-50">{schedule.date}</td>
+                      <td className="px-4 sm:px-6 py-2 sm:py-3">
+                        <div className="flex items-center">
+                          <span className="mr-2">{getScheduleIcon(schedule.isImportant || false)}</span>
+                          <a 
+                            href={schedule.link} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs sm:text-sm text-blue-600 hover:underline line-clamp-2 sm:line-clamp-1"
+                          >
+                            {schedule.content}
+                          </a>
+                        </div>
+                      </td>
+                      <td className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm text-gray-500 whitespace-nowrap">{schedule.note}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
-        )}
-      </main>
+        </div>
+      </div>
 
       {/* 푸터 */}
       <footer className="bg-gray-100 mt-4">
-        <div className="container mx-auto px-4 py-4 flex flex-col items-center space-y-2">
-          <VisitorCounter />
-          <p className="text-xs sm:text-sm text-gray-600">&copy; 2025 국민대학교 일반대학원. All rights reserved.</p>
+        <div className="container mx-auto px-4 py-4">
+          <p className="text-xs sm:text-sm text-gray-600 text-center">&copy; 2025 국민대학교 일반대학원. All rights reserved.</p>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
