@@ -103,8 +103,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* 헤더 */}
-      <header className="relative h-48 sm:h-56 bg-gradient-to-r from-blue-600 to-blue-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <header className="relative h-48 sm:h-56 text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/header-bg.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-blue-800/80"></div>
         {/* 헤더 내용 */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center space-y-2 px-4 text-center">
           <h1 className="text-2xl sm:text-3xl font-semibold">KOOKMIN UNIVERSITY</h1>
