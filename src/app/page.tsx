@@ -78,10 +78,7 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  const months = [
-    [3, 4, 5, 6, 7, 8],
-    [9, 10, 11, 12, 1, 2]
-  ];
+  const months = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
 
   const schedules: { [key: number]: Schedule[] } = {
     3: [
