@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
 
 interface Schedule {
@@ -10,52 +9,6 @@ interface Schedule {
   link: string;
   isImportant?: boolean;
 }
-
-const VisitorCounter = () => {
-  const [totalVisitors, setTotalVisitors] = useState(0);
-  const [todayVisitors, setTodayVisitors] = useState(0);
-
-  useEffect(() => {
-    const today = new Date().toDateString();
-    const lastVisit = localStorage.getItem('lastVisit');
-    const totalCount = parseInt(localStorage.getItem('totalVisitors') || '0');
-    const todayCount = parseInt(localStorage.getItem('todayVisitors') || '0');
-
-    // 오늘 날짜가 변경되었으면 오늘 방문자 수 초기화
-    if (lastVisit !== today) {
-      localStorage.setItem('todayVisitors', '1');
-      localStorage.setItem('lastVisit', today);
-      setTodayVisitors(1);
-    } else {
-      // 오늘 방문자 수 증가
-      const newTodayCount = todayCount + 1;
-      localStorage.setItem('todayVisitors', newTodayCount.toString());
-      setTodayVisitors(newTodayCount);
-    }
-
-    // 전체 방문자 수 증가
-    const newTotalCount = totalCount + 1;
-    localStorage.setItem('totalVisitors', newTotalCount.toString());
-    setTotalVisitors(newTotalCount);
-  }, []);
-
-  return (
-    <div className="flex items-center justify-center space-x-4 text-gray-600">
-      <div className="flex items-center bg-white rounded-lg px-3 py-1.5 shadow-sm">
-        <span className="mr-2 text-xs font-medium">TOTAL</span>
-        <span className="font-mono text-sm">
-          {totalVisitors.toString().padStart(6, '0')}
-        </span>
-      </div>
-      <div className="flex items-center bg-white rounded-lg px-3 py-1.5 shadow-sm">
-        <span className="mr-2 text-xs font-medium">TODAY</span>
-        <span className="font-mono text-sm">
-          {todayVisitors.toString().padStart(3, '0')}
-        </span>
-      </div>
-    </div>
-  );
-};
 
 const ImportantStar = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block">
