@@ -65,12 +65,12 @@ export default function Home() {
     ],
     4: [
       {
-        date: "4.7-4.10",
+        date: "4.7(월)-4.10(목)",
         content: "2025학년도 1학기 학위청구논문 심사 요청서 제출",
         note: "17:00까지",
         link: "https://cns.kookmin.ac.kr/cns/notice/graduate-school-notice.do?mode=view&articleNo=5925492&article.offset=0&articleLimit=10",
         isImportant: true,
-        icon: "📋"
+        icon: "📚"
       }
     ],
     5: [],
